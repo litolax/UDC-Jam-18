@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
      public static Transform Player;
-     private Vector3 offset = new Vector3(0.072f,1.55f, -4.537f);
+     private Vector3 offset = new Vector3(0.072f,0.50f, -4.537f);
+     //1.55f
      private Vector3 posEnd, posSmoth;
 
      void Start()

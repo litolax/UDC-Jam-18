@@ -7,22 +7,17 @@ public class PlayerManager : MonoBehaviour
     public static Rigidbody rigidbody;
     public static float SessionSpeed;
     public static Vector3 movement;
-    public static float jumpForce = 3f;
+    public static float jumpForce = 3.18f;
     private Quaternion rot;
     private float Cooldown = 0.3f;
     private float timer;
     //timer < 0.0f
     //timer = Cooldown;
     //timer -= Time.deltaTime;
-
-    private void Awake()
+    
+   void Awake()
     {
         SessionSpeed = 5;
-        
-    }
-
-    private void Start()
-    {
         rigidbody = gameObject.GetComponent<Rigidbody>();
         CurrentPlayer = this.gameObject;
     }
@@ -45,7 +40,7 @@ public class PlayerManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            rigidbody.transform.Translate(new Vector3(0f,0f,1f)*SessionSpeed/100);
+            Movement();
             if (gameObject.transform.position.y == 90)
             {
                 gameObject.transform.rotation = Quaternion.Euler(0f,270f,0f);
@@ -76,7 +71,7 @@ public class PlayerManager : MonoBehaviour
     public static void Movement()
     {
         SessionSpeed += Time.deltaTime / 14;
-        movement = new Vector3(0f, 0f, 1f);
+        movement = new Vector3(0f, 0f, 1.5f);
         rigidbody.transform.Translate(movement*SessionSpeed/100);
     }
 
