@@ -7,7 +7,13 @@ public class PlayerManager : MonoBehaviour
     public static Rigidbody rigidbody;
     public static float SessionSpeed;
     public static Vector3 movement;
-    private static float jumpForce = 3f;
+    public static float jumpForce = 3f;
+    private Quaternion rot;
+    private float Cooldown = 0.3f;
+    private float timer;
+    //timer < 0.0f
+    //timer = Cooldown;
+    //timer -= Time.deltaTime;
 
     private void Awake()
     {
@@ -23,18 +29,31 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) && _isGrounded)
-        {
-            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        }
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             Movement();
+            if (gameObject.transform.position.y == 270)
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0f,90f,0f);
+            }
+            else
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0f,90f,0f);
+            }
+            
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            rigidbody.transform.Translate(new Vector3(0f,0f,-1f)*SessionSpeed/100);
+            rigidbody.transform.Translate(new Vector3(0f,0f,1f)*SessionSpeed/100);
+            if (gameObject.transform.position.y == 90)
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0f,270f,0f);
+            }
+            else
+            {
+                gameObject.transform.rotation = Quaternion.Euler(0f,270f,0f);
+            }
         }
     }
 
@@ -59,7 +78,6 @@ public class PlayerManager : MonoBehaviour
         SessionSpeed += Time.deltaTime / 14;
         movement = new Vector3(0f, 0f, 1f);
         rigidbody.transform.Translate(movement*SessionSpeed/100);
-
     }
 
     private void IsGroundedUpate(Collision collision, bool value)
