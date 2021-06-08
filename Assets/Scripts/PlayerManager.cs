@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey((KeyCode.LeftArrow)))
         {
             Movement();
             if (gameObject.transform.position.y == 90)

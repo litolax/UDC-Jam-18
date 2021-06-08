@@ -29,7 +29,19 @@ public class HomoAnimation : MonoBehaviour
 
     void UpdateMesh()
     {
-        GetComponent<MeshFilter>().mesh = frames[currentFrame];
+        if (!Input.anyKey)
+        {
+            GetComponent<MeshFilter>().mesh = frames[0];
+        }
+        else if (PlayerManager._isGrounded && Input.anyKey)
+        {
+            GetComponent<MeshFilter>().mesh = frames[currentFrame];
+        }
+        else if (!PlayerManager._isGrounded)
+        {
+            GetComponent<MeshFilter>().mesh = frames[0];
+        }
+        
         /*if (runAnim)
         {
             GetComponent<MeshFilter>().mesh = frames[currentFrame];
@@ -38,5 +50,6 @@ public class HomoAnimation : MonoBehaviour
         {
             GetComponent<MeshFilter>().mesh = framesJump[currentFrame2];
         }*/
+        
     }
 }
