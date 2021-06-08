@@ -11,11 +11,8 @@ public class PlayerManager : MonoBehaviour
     private Quaternion rot;
     private float Cooldown = 0.3f;
     private float timer;
-    //timer < 0.0f
-    //timer = Cooldown;
-    //timer -= Time.deltaTime;
-    
-   void Awake()
+
+    void Awake()
     {
         SessionSpeed = 5;
         rigidbody = gameObject.GetComponent<Rigidbody>();
