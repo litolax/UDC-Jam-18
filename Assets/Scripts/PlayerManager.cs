@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && !EnemyCollision.isDead)
         {
             Movement();
             if (gameObject.transform.position.y == 270)
@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey((KeyCode.LeftArrow)))
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !EnemyCollision.isDead)
         {
             Movement();
             if (gameObject.transform.position.y == 90)
